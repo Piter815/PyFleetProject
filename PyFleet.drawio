@@ -1,0 +1,68 @@
+<mxfile host="app.diagrams.net" modified="2020-11-18T14:46:52.608Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="JsMdwdXCcRfLldRQ_ham" version="13.9.9" type="github">
+  <diagram name="Page-1" id="74e2e168-ea6b-b213-b513-2b3c1d86103e">
+    <mxGraphModel dx="1422" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-6" value="Truck&lt;br&gt;- PK truck_id&lt;br&gt;- VIN&lt;br&gt;- car_model&lt;br&gt;- productoin_date&lt;br&gt;- company_registration_date&lt;br&gt;- Odometer&lt;br&gt;- Service interval&lt;br&gt;- Type (lorry, ciagnik, cysterna, laweta)&lt;br&gt;- Max_load&lt;br&gt;- Reg_number&lt;br&gt;- description&lt;br&gt;- avalibility&lt;br&gt;- FK Order_ID" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="590" y="480" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-7" value="Employee&lt;br&gt;- PK Empl_ID&lt;br&gt;- Name&lt;br&gt;- Surname&lt;br&gt;- Role (Admin/Driver...)&lt;br&gt;- Salary&lt;br&gt;- Birth_Date&lt;br&gt;- Qualifications&lt;br&gt;- phone&lt;br&gt;- email&lt;br&gt;- avalilibility" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="625" y="80" width="150" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-8" value="Daily Route&lt;br&gt;- PK Route_ID&lt;br&gt;- Distance&lt;br&gt;- fuel_consumed&lt;br&gt;- FK Truck_ID&lt;br&gt;- FK Empl_ID&lt;br&gt;- From&lt;br&gt;- To&lt;br&gt;- Date" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="625" y="270" width="150" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-11" value="Customer&lt;br&gt;- PK Customer_ID&lt;br&gt;- Comapny_name&lt;br&gt;- Billing_address&lt;br&gt;- phone&lt;br&gt;- email&lt;br&gt;- NIP" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="150" y="270" width="120" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-12" value="Order&lt;br&gt;- PK Order_ID&lt;br&gt;- Route_type (km / h)&lt;br&gt;- Load_type (mat sypki, kontener, plyn, pojazd)&lt;br&gt;- Order Date&lt;br&gt;- Status (open/closed)&lt;br&gt;- FK Customer_ID&lt;br&gt;- FK Truck_ID" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+          <mxGeometry x="370" y="275" width="150" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-13" value="" style="endArrow=blockThin;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=0;endFill=0;" parent="1" source="InjwqQHvNrWYtw7XVf_L-12" target="InjwqQHvNrWYtw7XVf_L-11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="330" y="275" as="sourcePoint" />
+            <mxPoint x="380" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-15" value="" style="endArrow=blockThin;startArrow=ERmany;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startFill=0;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="InjwqQHvNrWYtw7XVf_L-8" target="InjwqQHvNrWYtw7XVf_L-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="635" y="250" as="sourcePoint" />
+            <mxPoint x="640" y="240.00000000000003" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-22" value="" style="endArrow=ERmany;startArrow=openThin;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startFill=0;endFill=0;" parent="1" source="InjwqQHvNrWYtw7XVf_L-7" target="InjwqQHvNrWYtw7XVf_L-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="545" y="160" as="sourcePoint" />
+            <mxPoint x="545" y="290" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-23" value="Opis: Aplikacja dla firmy zarządzającej flota ciężarówek&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;Funkcjonalności&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;:&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- dostęp&amp;nbsp;dla admin firmy:&lt;/span&gt;&lt;/div&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;dodawanie/usuwanie/edycja&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;pojazdów&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;dodawanie/usuwanie/edycja&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;pracowników&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;raportowanie ilości&amp;nbsp;km, kosztów,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;kontraktów&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;- profile klienta:&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; dodawanie/usuwanie/edycja&amp;nbsp;&lt;/span&gt;&lt;span&gt;zamowienia&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;div&gt;- dostep dla kierowcy:&lt;/div&gt;&lt;div&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;dodawanie/usuwanie/edycja&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;span&gt;&amp;nbsp;raportow dziennych (Daily Route)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;&amp;nbsp;wglad do historii swoich tras&lt;/div&gt;&lt;/blockquote&gt;&lt;div style=&quot;text-align: left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left&quot;&gt;- dodawanie Info Postow: posty informacyjne widoczne dla zalogowanych użytkowników na stronie głównej&lt;/div&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px ; border: none ; padding: 0px&quot;&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="480" width="310" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="InjwqQHvNrWYtw7XVf_L-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=ERmany;startFill=0;endArrow=ERmany;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=-0.006;exitY=0.575;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="InjwqQHvNrWYtw7XVf_L-6" target="InjwqQHvNrWYtw7XVf_L-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="420" as="sourcePoint" />
+            <mxPoint x="500" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3D51c6eOaqWXIXbz9MIS-3" value="&lt;br&gt;&lt;br&gt;&lt;div&gt;&lt;font face=&quot;helvetica&quot;&gt;InfoPost&lt;/font&gt;&lt;/div&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;div&gt;- PK Post_ID&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;div&gt;- FK Author (Empl ID)&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;div&gt;- Posting_date&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;div&gt;- Title&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0 , 0 , 0) ; font-family: &amp;#34;helvetica&amp;#34; ; font-size: 12px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none&quot;&gt;&lt;div&gt;- Text_body&lt;/div&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="420" y="80" width="140" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="3D51c6eOaqWXIXbz9MIS-6" value="" style="endArrow=classicThin;startArrow=ERmany;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startFill=0;endFill=0;" parent="1" source="3D51c6eOaqWXIXbz9MIS-3" target="InjwqQHvNrWYtw7XVf_L-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="240" as="sourcePoint" />
+            <mxPoint x="630" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pMvn1T9RJ4bfrTRh85_g-1" value="" style="endArrow=blockThin;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startFill=0;endFill=0;exitX=-0.007;exitY=0.425;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="InjwqQHvNrWYtw7XVf_L-8" target="InjwqQHvNrWYtw7XVf_L-12" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="340" as="sourcePoint" />
+            <mxPoint x="570" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
