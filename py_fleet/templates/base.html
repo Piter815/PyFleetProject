@@ -1,0 +1,67 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<html {% if LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}"{% endif %}>
+
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Django Movies</title>
+      {% block styles %}{% bootstrap_css %}{% endblock %}
+      {% block scripts %}{% bootstrap_javascript jquery='full' %}{% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container fixed">
+        <a class="navbar-brand" href="{% url 'index' %}">Django Movies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">
+              Home
+            </a>
+            <div class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                Movies
+              </a>
+              <div class="dropdown-menu">
+
+                <a class="dropdown-item" href="{% url 'core:movie_create' %}">Create</a>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+              {% if user.is_authenticated %}
+                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                  {% if user.first_name %}Hello, {{ user.first_name }}!
+                  {% else %}Hello, {{ user.username }}!{% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item text-right" href="{% url 'accounts:logout' %}">Logout</a>
+                  <a class="dropdown-item text-right" href="{% url 'accounts:password_change' %}">Change Password</a>
+                </div>
+              {% else %}
+                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
+                  You are not logged in.
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item text-right" href="{% url 'accounts:login' %}">Login</a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="jumbotron">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+
+</html>

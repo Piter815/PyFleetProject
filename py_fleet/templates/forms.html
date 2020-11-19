@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!--    {% crispy form %}-->
+<!--<div class="content-section">-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <fieldset class="form-group">-->
+<!--            <legend class="border-bottom mb-4">Enter new Movie!</legend>-->
+<!--            {{ form|crispy }}-->
+<!--        </fieldset>-->
+<!--        <div class="form-group">-->
+<!--            <button class="btn btn-outline-info" type="submit">Submit</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</div>-->
+    <form method="post">
+        {% csrf_token %}
+        {% crispy form %}
+<!--        {{ form|crispy }}-->
+    </form>
+
+{% endblock %}
