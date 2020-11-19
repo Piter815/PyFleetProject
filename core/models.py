@@ -86,7 +86,7 @@ class Employee(models.Model):
     role = models.CharField(max_length=2, choices=ROLE)
     salary = models.DecimalField(max_digits=8, decimal_places=2)
     birth_date = models.DateField(default=date.today)
-    billing_address = models.TextField(null=True, blank=True, max_length=200)
+    address = models.TextField(null=True, blank=True, max_length=200)
     availability = models.CharField(max_length=1, choices=AVAILABILITY)
     qualifications = models.TextField(null=True, blank=True, max_length=200)
 
