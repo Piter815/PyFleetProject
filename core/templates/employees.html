@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <h1>PyFleet Our Employees</h1>
+    <ul>
+        {% for employee in employee_list %}
+
+                <li>
+                     Name: {{ employee.name }}, {{ employee.surname }} Role: {{employee.role}}, Born: {{employee.birth_date}}
+                </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

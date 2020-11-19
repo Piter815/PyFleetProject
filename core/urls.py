@@ -1,4 +1,4 @@
-"""py_fleet URL Configuration
+"""django_movies URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -13,17 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 
-from core.views import EmployeeListView, EmployeeDetailView
-from py_fleet.views import IndexView
+from django.urls import path
+from core.views import EmployeeListView
 
+app_name = 'core'
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("core/", include('core.urls', namespace='core')),
-    path("employee/list", EmployeeListView.as_view(), name='employee_list'),
-    path("", IndexView.as_view(), name='index'),
-    path("employee/detail/<pk>", EmployeeDetailView.as_view(), name="employee_detail")
+    path("employee/", EmployeeListView.as_view(), name='employee_list'),
 ]
-
