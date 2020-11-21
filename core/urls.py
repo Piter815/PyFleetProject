@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path
-from core.views import EmployeeListView
+from core.views import EmployeeListView, TruckListView
 
 app_name = 'core'
 urlpatterns = [
