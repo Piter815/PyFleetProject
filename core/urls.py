@@ -20,4 +20,5 @@ from core.views import EmployeeListView
 app_name = 'core'
 urlpatterns = [
     path("employee/", EmployeeListView.as_view(), name='employee_list'),
+    path("truck/", TruckListView.as_view(), name='truck_list'),
 ]
