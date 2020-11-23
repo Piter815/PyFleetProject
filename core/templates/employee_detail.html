@@ -4,12 +4,24 @@
 {% load employee_extras %}
 
 {% block content %}
-  {{ employee|attr_as_p:'name' }}
-  {{ employee|attr_as_p:'surname' }}
-  {{ employee|attr_as_p:'role' }}
-  {{ employee|attr_as_p:'birth_date' }}
-  {{ employee|attr_as_p:'salary' }}
-  {{ employee|attr_as_p:'address' }}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <img src="{{ employee.photo.url }}" class="img-fluid" alt="photo">
+    </div>
+    <div class="col-sm">
+      {{ employee|attr_as_p:'name' }}
+      {{ employee|attr_as_p:'surname' }}
+      {{ employee|attr_as_p:'role' }}
+      {{ employee|attr_as_p:'birth_date' }}
+      {{ employee|attr_as_p:'salary' }}
+      {{ employee|attr_as_p:'address' }}
+    </div>
+  </div>
+</div>
+
+
 
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>

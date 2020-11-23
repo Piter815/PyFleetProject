@@ -3,8 +3,11 @@ import django_tables2 as tables
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django_tables2 import SingleTableView
+from django_filters.views import FilterView
+from django_tables2 import SingleTableView, SingleTableMixin
+from django_tables2.export import ExportMixin
 
+from core.filters import DailyRouteFilter
 from core.models import Employee, Customer, Order, Truck, DailyRoute
 from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm
 from core.tables import DailyRouteTable
@@ -227,7 +230,18 @@ class DailyRouteDeleteView(DeleteView):
     success_url = reverse_lazy('daily_routes')
 
 
-class DailyRouteListView(SingleTableView):
+class DailyRouteListView(ExportMixin, SingleTableView):
     model = DailyRoute
     table_class = DailyRouteTable
     template_name = 'daily_routes.html'
+
+# class DailyRouteListView(ExportMixin, SingleTableView):
+#     model = DailyRoute
+#     table_class = DailyRouteTable
+#     template_name = 'daily_routes.html'
+
+class FilteredDailyRouteListView(SingleTableMixin,ExportMixin, FilterView):
+    table_class = DailyRouteTable
+    model = DailyRoute
+    template_name = "daily_routes.html"
+    filterset_class = DailyRouteFilter

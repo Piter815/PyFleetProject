@@ -8,7 +8,7 @@
         {% for truck in truck_list %}
 
                 <li>
-                     Model: {{ truck.model_name }} ({{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
+                     Model: <strong>{{ truck.model_name }} </strong> Production: {{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
                     <p><small>
                         <a href="{% url 'truck_detail' truck.pk %}">detail</a> /
                         <a href="{% url 'truck_update' truck.pk %}">update</a> /

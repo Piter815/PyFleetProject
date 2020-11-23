@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from . import views, settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView, \
     CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView, OrderListView, \
     OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
     DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
-    TruckDetailView, TruckListView
+    TruckDetailView, TruckListView, FilteredDailyRouteListView
 from py_fleet.views import IndexView
 
 urlpatterns = [
@@ -42,7 +44,7 @@ urlpatterns = [
     path("order/create", OrderCreateView.as_view(), name="order_create"),
     path("order/update/<pk>", OrderUpdateView.as_view(), name="order_update"),
     path("order/delete/<pk>", OrderDeleteView.as_view(), name="order_delete"),
-    path("daily-routes/list", DailyRouteListView.as_view(), name='daily_routes'),
+    path("daily-routes/list", FilteredDailyRouteListView.as_view(), name='daily_routes'),
     path("daily-routes/detail/<pk>", DailyRouteDetailView.as_view(), name="daily_route_detail"),
     path("daily-routes/create", DailyRouteCreateView.as_view(), name="daily_route_create"),
     path("daily-routes/update/<pk>", DailyRouteUpdateView.as_view(), name="daily_route_update"),
@@ -54,3 +56,5 @@ urlpatterns = [
     path("truck/delete/<pk>", TruckDeleteView.as_view(), name="truck_delete"),
 ]
 
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

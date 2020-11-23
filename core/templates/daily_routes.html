@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% load render_table from django_tables2 %}
+{% load export_url from django_tables2 %}
 {% load bootstrap4 %}
 
 {% block content %}
-    <h1>PyFleet Our Daily Routes</h1>
-    <h4>List of our current employees, for details and edits please use links below</h4>
-    <div>
-        {% render_table table %}
-    </div>
 
+<h1>PyFleet Our Daily Routes</h1>
+<h4>List of our daily routes, for details and edits please use links below</h4>
+{% if filter %}
+    <form action="" method="get" class="form form-inline">
+        {% bootstrap_form filter.form layout='inline' %}
+        {% bootstrap_button 'filter' %}
+    </form>
+{% endif %}
+{% render_table table 'django_tables2/bootstrap.html' %}
+<a href="{% url 'daily_routes'  %}{% export_url 'csv' %}">Download as .csv</a>
 {% endblock %}
