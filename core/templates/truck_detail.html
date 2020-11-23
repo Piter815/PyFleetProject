@@ -1,13 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% load bootstrap4 %}
 {% load truck_extras %}
 
+
 {% block content %}
+<head>
+
+
+</head>
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <img src="{{ truck.photo.url }}" class="img-fluid" alt="photo">
+      <img src="{{ truck.photo.url }}" class="img-fluid rounded" alt="photo">
     </div>
     <div class="col-sm">
   {{ truck|attr_as_p:'model_name' }}
@@ -25,12 +31,26 @@
   </div>
 </div>
 
+
+
+
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>
     <p><small>
         <a href="{% url 'truck_update' truck.pk %}">update</a> /
         <a href="{% url 'truck_delete' truck.pk %}">delete</a></small>
     </p>
+</div>
+<div class="container">
+    <div class="row">
+        <h5 class="col-sm"> Where is the truck now? (GPS track placeholder)</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <div id="map"></div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

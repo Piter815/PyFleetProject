@@ -7,8 +7,16 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>PyFleet</title>
-      {% block styles %}{% bootstrap_css %}{% endblock %}
-      {% block scripts %}{% bootstrap_javascript jquery='full' %}{% endblock %}
+      {% block styles %}{% bootstrap_css %}
+      <link rel="stylesheet" href="{% static 'style.css'%}" type="text/css">
+      {% endblock %}
+      {% block scripts %}{% bootstrap_javascript jquery='full' %}
+      <script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDm26SfSzXWNO4H5F3hkpOlS302tVRTc&callback=initMap">
+      </script>
+      <script src="{% static 'google-map.js' %}"></script>
+
+      {% endblock %}
   </head>
 
   <body>
