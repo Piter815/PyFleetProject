@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'bootstrap4',
     'crispy_forms',
+    'django_tables2',
 ]
 
 CRISPY_TEMPLATE_PACK='bootstrap4'

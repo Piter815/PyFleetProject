@@ -1,10 +1,13 @@
 from concurrent.futures._base import LOGGER
-
+import django_tables2 as tables
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from core.models import Employee, Customer, Order
+from django_tables2 import SingleTableView
+
+from core.models import Employee, Customer, Order, Truck, DailyRoute
 from core.forms import EmployeeForm, CustomerForm, OrderForm
+from core.tables import DailyRouteTable
 
 
 class EmployeeListView(ListView):
@@ -46,9 +49,11 @@ class CustomerDetailView(DetailView):
     template_name = 'customer_detail.html'
     model = Customer
 
+
 class OrderDetailView(DetailView):
     template_name = 'order_detail.html'
     model = Order
+
 
 class EmployeeCreateView(CreateView):
     title = 'Add Employee'
@@ -71,11 +76,13 @@ class CustomerCreateView(EmployeeCreateView):
     form_class = CustomerForm
     success_url = reverse_lazy('customer_list')
 
+
 class OrderCreateView(EmployeeCreateView):
     title = 'Add Order'
     template_name = 'forms.html'
     form_class = OrderForm
     success_url = reverse_lazy('order_list')
+
 
 class EmployeeUpdateView(UpdateView):
     title = 'Update Employee'
@@ -103,6 +110,7 @@ class CustomerUpdateView(UpdateView):
     def form_invalid(self, form):
         LOGGER.warning('Invalid data provided.')
         return super().form_invalid(form)
+
 
 class OrderUpdateView(UpdateView):
     title = 'Update Order'
@@ -143,3 +151,9 @@ class TruckListView(ListView):
         context = super().get_context_data(**kwargs)
         context['truck_list'] = Truck.objects.all()
         return context
+
+
+class DailyRouteListView(SingleTableView):
+    model = DailyRoute
+    table_class = DailyRouteTable
+    template_name = 'daily_routes.html'

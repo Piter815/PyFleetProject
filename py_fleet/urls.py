@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView, \
     CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView, OrderListView, \
-    OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView
+    OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView
 from py_fleet.views import IndexView
 
 urlpatterns = [
@@ -40,5 +40,6 @@ urlpatterns = [
     path("order/create", OrderCreateView.as_view(), name="order_create"),
     path("order/update/<pk>", OrderUpdateView.as_view(), name="order_update"),
     path("order/delete/<pk>", OrderDeleteView.as_view(), name="order_delete"),
+    path("daily-routes/list", DailyRouteListView.as_view(), name='daily_routes'),
 ]
 
