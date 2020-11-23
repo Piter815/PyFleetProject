@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <h1>PyFleet Our Trucks</h1>
+    <ul>
+        {% for truck in truck_list %}
+
+                <li>
+                     Model: {{ truck.model_name }} ({{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
+                </li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

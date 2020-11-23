@@ -133,3 +133,13 @@ class OrderDeleteView(DeleteView):
     model = Order
     template_name = 'order_confirm_delete.html'
     success_url = reverse_lazy('order_list')
+
+
+class TruckListView(ListView):
+    template_name = 'trucks.html'
+    model = Truck
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['truck_list'] = Truck.objects.all()
+        return context
