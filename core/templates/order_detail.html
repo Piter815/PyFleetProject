@@ -14,6 +14,14 @@
           {% for truck in order.truck.all %}
             <li>{{ truck }}</li>
           {% endfor %}
+<div class="container-sm py-md-5">
+    <h5>Need to edit?</h5>
+    <p><small>
+        <a href="{% url 'order_update' order.pk %}">update</a> /
+        <a href="{% url 'order_delete' order.pk %}">delete</a></small>
+    </p>
+</div>
+
 
 
 {% endblock %}
