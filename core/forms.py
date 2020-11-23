@@ -52,7 +52,7 @@ class OrderForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(Column('order_id'), Column('order_date'), Column('customer')),
+            Row(Column('order_date'), Column('customer')),
             'route_type',
             'load_type',
             'truck',

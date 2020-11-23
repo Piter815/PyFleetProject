@@ -23,13 +23,15 @@ from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView,
     OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
     DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
     TruckDetailView, TruckListView, FilteredDailyRouteListView
+from blog.views import home
 from py_fleet.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("core/", include('core.urls', namespace='core')),
+    path("blog/", include('blog.urls', namespace='blog')),
     path("employee/list", EmployeeListView.as_view(), name='employee_list'),
-    path("", IndexView.as_view(), name='index'),
+    path("", home, name='index'),
     path("employee/detail/<pk>", EmployeeDetailView.as_view(), name="employee_detail"),
     path("employee/create", EmployeeCreateView.as_view(), name="employee_create"),
     path("employee/update/<pk>", EmployeeUpdateView.as_view(), name="employee_update"),
