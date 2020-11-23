@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load customer_extras %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <h1>PyFleet Our Customers</h1>
+    <h4>List of our current customers, for details and edits please use links below</h4>
+    <ul>
+        {% for customer in object_list %}
+          <li>
+            {% customer_format customer short=False %}
+              <p><small>
+                <a href="{% url 'customer_detail' customer.pk %}">detail</a> /
+                <a href="{% url 'customer_update' customer.pk %}">update</a> /
+                <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>
+              </p>
+          </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

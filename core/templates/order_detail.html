@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load order_extras %}
+
+{% block content %}
+  {{ order|attr_as_p:'order_id' }}
+  {{ order|attr_as_p:'order_date' }}
+  {{ order|attr_as_p:'route_type' }}
+  {{ order|attr_as_p:'load_type' }}
+  {{ order|attr_as_p:'status' }}
+  {{ order|attr_as_p:'customer' }}
+  <p><strong>Trucks:</strong></p>
+          {% for truck in order.truck.all %}
+            <li>{{ truck }}</li>
+          {% endfor %}
+
+
+{% endblock %}

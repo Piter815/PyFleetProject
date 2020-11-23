@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load customer_extras %}
+
+{% block content %}
+  {{ customer|attr_as_p:'company_name' }}
+  {{ customer|attr_as_p:'email' }}
+  {{ customer|attr_as_p:'phone' }}
+  {{ customer|attr_as_p:'NIP' }}
+  {{ customer|attr_as_p:'billing_address' }}
+
+{% endblock %}

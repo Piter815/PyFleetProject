@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load employee_extras %}
+
+{% block content %}
+  {{ employee|attr_as_p:'name' }}
+  {{ employee|attr_as_p:'surname' }}
+  {{ employee|attr_as_p:'role' }}
+  {{ employee|attr_as_p:'birth_date' }}
+  {{ employee|attr_as_p:'salary' }}
+  {{ employee|attr_as_p:'address' }}
+{% endblock %}

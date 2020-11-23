@@ -24,12 +24,30 @@
               Home
             </a>
             <div class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
-                Movies
+              <a class="nav-link active dropdown-toggle" href="{% url 'employee_list' %}" data-toggle="dropdown">
+                Employees
               </a>
               <div class="dropdown-menu">
-
-                <a class="dropdown-item" href="#">Create</a>
+                <a class="dropdown-item" href="{% url 'employee_list' %}">List</a>
+                <a class="dropdown-item" href="{% url 'employee_create' %}">Create</a>
+              </div>
+            </div>
+            <div class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="{% url 'customer_list' %}" data-toggle="dropdown">
+                Customers
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'customer_list' %}">List</a>
+                <a class="dropdown-item" href="{% url 'customer_create' %}">Create</a>
+              </div>
+            </div>
+            <div class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="{% url 'order_list' %}" data-toggle="dropdown">
+                Orders
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'order_list' %}">List</a>
+                <a class="dropdown-item" href="{% url 'order_create' %}">Create</a>
               </div>
             </div>
           </div>
