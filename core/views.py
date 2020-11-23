@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django_tables2 import SingleTableView
 
 from core.models import Employee, Customer, Order, Truck, DailyRoute
-from core.forms import EmployeeForm, CustomerForm, OrderForm
+from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm
 from core.tables import DailyRouteTable
 
 
@@ -39,6 +39,15 @@ class OrderListView(ListView):
         context['order_list'] = Order.objects.all()
         return context
 
+class TruckListView(ListView):
+    template_name = 'trucks.html'
+    model = Truck
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['truck_list'] = Truck.objects.all()
+        return context
+
 
 class EmployeeDetailView(DetailView):
     template_name = 'employee_detail.html'
@@ -53,6 +62,16 @@ class CustomerDetailView(DetailView):
 class OrderDetailView(DetailView):
     template_name = 'order_detail.html'
     model = Order
+
+
+class TruckDetailView(DetailView):
+    template_name = 'truck_detail.html'
+    model = Truck
+
+
+class DailyRouteDetailView(DetailView):
+    template_name = 'daily_route_detail.html'
+    model = DailyRoute
 
 
 class EmployeeCreateView(CreateView):
@@ -82,6 +101,35 @@ class OrderCreateView(EmployeeCreateView):
     template_name = 'forms.html'
     form_class = OrderForm
     success_url = reverse_lazy('order_list')
+
+class TruckCreateView(CreateView):
+    title = 'Add Truck'
+    template_name = 'forms.html'
+    form_class = TruckForm
+    success_url = reverse_lazy('trucks_list')
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
+
+
+class DailyRouteCreateView(CreateView):
+    title = 'Add Daily Route'
+    template_name = 'forms.html'
+    form_class = DailyRouteForm
+    success_url = reverse_lazy('daily_routes')
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
 
 
 class EmployeeUpdateView(UpdateView):
@@ -124,6 +172,30 @@ class OrderUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
+class TruckUpdateView(UpdateView):
+    title = 'Update Truck Details'
+    model = Truck
+    template_name = 'forms.html'
+    form_class = TruckForm
+    success_url = reverse_lazy('truck_list')
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
+
+
+class DailyRouteUpdateView(UpdateView):
+    title = 'Update Daily Route'
+    model = DailyRoute
+    template_name = 'forms.html'
+    form_class = DailyRouteForm
+    success_url = reverse_lazy('daily_routes')
+
+    def form_invalid(self, form):
+        LOGGER.warning('Invalid data provided.')
+        return super().form_invalid(form)
+
+
 class EmployeeDeleteView(DeleteView):
     model = Employee
     template_name = 'employee_confirm_delete.html'
@@ -143,14 +215,16 @@ class OrderDeleteView(DeleteView):
     success_url = reverse_lazy('order_list')
 
 
-class TruckListView(ListView):
-    template_name = 'trucks.html'
+class TruckDeleteView(DeleteView):
     model = Truck
+    template_name = 'truck_confirm_delete.html'
+    success_url = reverse_lazy('truck_list')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['truck_list'] = Truck.objects.all()
-        return context
+
+class DailyRouteDeleteView(DeleteView):
+    model = DailyRoute
+    template_name = 'daily_route_confirm_delete.html'
+    success_url = reverse_lazy('daily_routes')
 
 
 class DailyRouteListView(SingleTableView):

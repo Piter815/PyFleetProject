@@ -9,6 +9,11 @@
 
                 <li>
                      Model: {{ truck.model_name }} ({{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
+                    <p><small>
+                        <a href="{% url 'truck_detail' truck.pk %}">detail</a> /
+                        <a href="{% url 'truck_update' truck.pk %}">update</a> /
+                        <a href="{% url 'truck_delete' truck.pk %}">delete</a></small>
+                    </p>
                 </li>
 
         {% endfor %}

@@ -18,7 +18,9 @@ from django.urls import path, include
 
 from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView, EmployeeUpdateView, EmployeeDeleteView, \
     CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView, OrderListView, \
-    OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView
+    OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
+    DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
+    TruckDetailView, TruckListView
 from py_fleet.views import IndexView
 
 urlpatterns = [
@@ -41,5 +43,14 @@ urlpatterns = [
     path("order/update/<pk>", OrderUpdateView.as_view(), name="order_update"),
     path("order/delete/<pk>", OrderDeleteView.as_view(), name="order_delete"),
     path("daily-routes/list", DailyRouteListView.as_view(), name='daily_routes'),
+    path("daily-routes/detail/<pk>", DailyRouteDetailView.as_view(), name="daily_route_detail"),
+    path("daily-routes/create", DailyRouteCreateView.as_view(), name="daily_route_create"),
+    path("daily-routes/update/<pk>", DailyRouteUpdateView.as_view(), name="daily_route_update"),
+    path("daily-routes/delete/<pk>", DailyRouteDeleteView.as_view(), name="daily_route_delete"),
+    path("truck/list", TruckListView.as_view(), name='truck_list'),
+    path("truck/detail/<pk>", TruckDetailView.as_view(), name="truck_detail"),
+    path("truck/create", TruckCreateView.as_view(), name="truck_create"),
+    path("truck/update/<pk>", TruckUpdateView.as_view(), name="truck_update"),
+    path("truck/delete/<pk>", TruckDeleteView.as_view(), name="truck_delete"),
 ]
 

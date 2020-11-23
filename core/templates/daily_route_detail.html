@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load order_extras %}
+
+{% block content %}
+  {{ dailyroute|attr_as_p:'date' }}
+  {{ dailyroute|attr_as_p:'start' }}
+  {{ dailyroute|attr_as_p:'end' }}
+  {{ dailyroute|attr_as_p:'distance' }}
+  {{ dailyroute|attr_as_p:'fuel_consumed' }}
+  {{ dailyroute|attr_as_p:'driver' }}
+  {{ dailyroute|attr_as_p:'truck' }}
+  {{ dailyroute|attr_as_p:'order' }}
+
+<div class="container-sm py-md-5">
+    <h5>Need to edit?</h5>
+    <p><small>
+        <a href="{% url 'daily_route_update' dailyroute.pk %}">update</a> /
+        <a href="{% url 'daily_route_delete' dailyroute.pk %}">delete</a></small>
+    </p>
+</div>
+
+
+
+{% endblock %}

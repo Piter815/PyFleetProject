@@ -3,8 +3,8 @@ from core.models import DailyRoute
 
 
 ACTIONS = '''
-   <a href="{% url 'employee_update' record.pk %}">Edit</a>
-   <a href="{% url 'employee_detail' record.pk %}">View</a>
+   <a href="{% url 'daily_route_update' record.pk %}">Edit</a>
+   <a href="{% url 'daily_route_detail' record.pk %}">View</a>
 '''
 
 class DailyRouteTable(tables.Table):

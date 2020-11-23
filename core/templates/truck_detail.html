@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load truck_extras %}
+
+{% block content %}
+  {{ truck|attr_as_p:'model_name' }}
+  {{ truck|attr_as_p:'production_date' }}
+  {{ truck|attr_as_p:'company_registration_date' }}
+  {{ truck|attr_as_p:'vin' }}
+  {{ truck|attr_as_p:'reg_number' }}
+  {{ truck|attr_as_p:'availability' }}
+  {{ truck|attr_as_p:'odometer' }}
+  {{ truck|attr_as_p:'service_interval' }}
+  {{ truck|attr_as_p:'type' }}
+  {{ truck|attr_as_p:'max_load' }}
+  {{ truck|attr_as_p:'description' }}
+
+<div class="container-sm py-md-5">
+    <h5>Need to edit?</h5>
+    <p><small>
+        <a href="{% url 'truck_update' truck.pk %}">update</a> /
+        <a href="{% url 'truck_delete' truck.pk %}">delete</a></small>
+    </p>
+</div>
+
+{% endblock %}

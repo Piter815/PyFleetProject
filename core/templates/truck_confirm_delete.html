@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            Are you sure you want to delete truck: "{{ object.model_name }} registered: {{ object.reg_number }}" from the database?
+        </p>
+        <input type="submit" value="Yes" class="btn btn-danger">
+    </form>
+{% endblock %}
