@@ -13,7 +13,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <img src="{{ truck.photo.url }}" class="img-fluid rounded" alt="photo">
+        {% if truck.photo %}
+            <img src="{{ truck.photo.url }}" class="img-fluid rounded" alt="photo">
+        {% endif %}
     </div>
     <div class="col-sm">
   {{ truck|attr_as_p:'model_name' }}

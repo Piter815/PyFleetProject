@@ -23,6 +23,7 @@ class EmployeeForm(forms.ModelForm):
             'email',
             'availability',
             'address',
+            'photo',
             Submit('submit','Submit'),
         )
 
@@ -79,6 +80,7 @@ class TruckForm(forms.ModelForm):
             'type',
             'max_load',
             'description',
+            'photo',
             Submit('submit','Submit'),
         )
 

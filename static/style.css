@@ -9,5 +9,12 @@
   }
 
 .article-title {
-    color: ;
+    text-decoration: none;
+    color: black;
+    transition: all 0.5s;
+}
+.article-title:hover {
+    text-decoration: underline;
+    color: black;
+    text-shadow: 0 4px 8px black;
 }

@@ -109,7 +109,7 @@ class TruckCreateView(CreateView):
     title = 'Add Truck'
     template_name = 'forms.html'
     form_class = TruckForm
-    success_url = reverse_lazy('trucks_list')
+    success_url = reverse_lazy('truck_list')
 
     def form_valid(self, form):
         form.save()
