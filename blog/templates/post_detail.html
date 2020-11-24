@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load employee_extras %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <h1> {{post.title}}</h1>
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'employee_detail' post.author.pk %}">{{ post.author }}</a>
+            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        </div>
+    <p class="article-content py-md-5">{{ post.content }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-sm py-md-5">
+    <h5>Need to edit?</h5>
+    <p><small>
+        <a href="{% url 'post_update' post.pk %}">update</a> /
+        <a href="{% url 'post_delete' post.pk %}">delete</a></small>
+    </p>
+</div>
+
+{% endblock %}

@@ -41,7 +41,7 @@ class Truck(models.Model):
     type = models.CharField(max_length=3, choices=TYPE)
     max_load = models.IntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True, max_length=200)
-    photo = models.ImageField(upload_to='trucks', null=True, blank=True)
+    photo = models.ImageField(upload_to='trucks', null=True, blank=True, default='truck.jpg')
 
     def __str__(self):
         return f'{self.model_name} Registered as: {self.reg_number}'
@@ -92,7 +92,7 @@ class Employee(models.Model):
     address = models.TextField(null=True, blank=True, max_length=200)
     availability = models.CharField(max_length=1, choices=AVAILABILITY)
     qualifications = models.TextField(null=True, blank=True, max_length=200)
-    photo = models.ImageField(upload_to='employees', null=True, blank=True)
+    photo = models.ImageField(upload_to='employees', null=True, blank=True, default='truck.jpg')
 
     def __str__(self):
         return f'{self.name} {self.surname} - {self.role}'

@@ -18,3 +18,21 @@
     color: black;
     text-shadow: 0 4px 8px black;
 }
+
+.mr-2 {
+    text-decoration: none;
+    color: #7c7c7c;
+    transition: all 0.5s;
+}
+
+.mr-2:hover {
+    text-decoration: underline;
+    color: black;
+    text-shadow: 0 4px 8px black;
+}
+
+.post-text {
+    max-height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

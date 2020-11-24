@@ -10,22 +10,24 @@
         <div class="row">
             <div class="col-5">
                 {% for post in posts %}
-                    <article class="media content-section">
+                    <article class="media content-section py-md-2 ">
                       <div class="media-body">
                         <div class="article-metadata">
-                          <a class="mr-2" href="#">{{ post.author }}</a>
+                          <a class="mr-2" href="{% url 'employee_detail' post.author.pk %}">{{ post.author }}</a>
                           <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                         </div>
-                        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-                        <p class="article-content">{{ post.content }}</p>
+                        <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                        <p class="post-text">{{ post.content }}</p>
                       </div>
                     </article>
                 {% endfor %}
             </div>
-            <div class="col">
+            <div class="col-5">
 
             </div>
         </div>
     </div>
 
 {% endblock content %}
+
+#eee
