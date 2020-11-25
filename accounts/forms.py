@@ -1,6 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm
 from django.forms import Form
 
 
@@ -9,6 +9,10 @@ class SubmittableForm(Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(*self.fields, Submit('submit', 'Submit'))
+
+
+class SignUpForm(SubmittableForm, UserCreationForm):
+    pass
 
 
 class SubmittableAuthenticationForm(SubmittableForm, AuthenticationForm):
