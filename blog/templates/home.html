@@ -1,14 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDm26SfSzXWNO4H5F3hkpOlS302tVRTc&callback=initMap&libraries=&v=weekly">
+</script>
+<script src="{% static 'google-map.js' %}"></script>
 
     <div class="container">
         <div class="container-sm py-md-3">
-            <h1> Company news feed! </h1>
+            <h1> Welcome to PyFleet! </h1>
         </div>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-5 ">
+                <h2> Company news feed: </h2>
+            </div>
+            <div class="col-sm">
+                <H2> Where are our trucks now: </H2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-5 py-md-3">
+
                 {% for post in posts %}
                     <article class="media content-section py-md-2 ">
                       <div class="media-body">
@@ -22,8 +39,9 @@
                     </article>
                 {% endfor %}
             </div>
-            <div class="col-5">
+            <div class="col-sm py-md-3">
 
+                <div id="map"></div>
             </div>
         </div>
     </div>

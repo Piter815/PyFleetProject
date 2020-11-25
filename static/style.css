@@ -1,12 +1,14 @@
 /* CSS Document */
 
 #map {
-	height: 500px;
-	width: 80%;
-	margin: auto;
+	height: 600px;
+
+	margin: ;
 	padding-bottom: 2em;
-	margin-bottom: 100px ;
+	margin-bottom: ;
   }
+
+
 
 .article-title {
     text-decoration: none;
@@ -36,3 +38,4 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+

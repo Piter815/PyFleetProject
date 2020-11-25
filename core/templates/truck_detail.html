@@ -3,13 +3,13 @@
 
 {% load bootstrap4 %}
 {% load truck_extras %}
-
-
 {% block content %}
-<head>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDm26SfSzXWNO4H5F3hkpOlS302tVRTc&callback=initMap&libraries=&v=weekly">
+</script>
+<script src="{% static 'google-map-detail.js' %}"></script>
 
-
-</head>
 <div class="container">
   <div class="row">
     <div class="col-sm">
@@ -51,6 +51,7 @@
     <div class="row">
         <div class="col-sm">
             <div id="map"></div>
+
         </div>
     </div>
 </div>
