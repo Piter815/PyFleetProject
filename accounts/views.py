@@ -20,3 +20,4 @@ class SuccessMessagedLogoutView(LogoutView):
     def get_next_page(self):
         result = super().get_next_page()
         messages.success(self.request, 'Logout successful')
+        return result
