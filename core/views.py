@@ -42,6 +42,7 @@ class OrderListView(ListView):
         context['order_list'] = Order.objects.all()
         return context
 
+
 class TruckListView(ListView):
     template_name = 'trucks.html'
     model = Truck
@@ -104,6 +105,7 @@ class OrderCreateView(EmployeeCreateView):
     template_name = 'forms.html'
     form_class = OrderForm
     success_url = reverse_lazy('order_list')
+
 
 class TruckCreateView(CreateView):
     title = 'Add Truck'
@@ -235,12 +237,13 @@ class DailyRouteListView(ExportMixin, SingleTableView):
     table_class = DailyRouteTable
     template_name = 'daily_routes.html'
 
+
 # class DailyRouteListView(ExportMixin, SingleTableView):
 #     model = DailyRoute
 #     table_class = DailyRouteTable
 #     template_name = 'daily_routes.html'
 
-class FilteredDailyRouteListView(SingleTableMixin,ExportMixin, FilterView):
+class FilteredDailyRouteListView(SingleTableMixin, ExportMixin, FilterView):
     table_class = DailyRouteTable
     model = DailyRoute
     template_name = "daily_routes.html"
