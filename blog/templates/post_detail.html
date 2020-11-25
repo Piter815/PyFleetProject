@@ -21,6 +21,7 @@
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>
     <p><small>
+        <a href="{% url 'post_create' %}">create new</a> /
         <a href="{% url 'post_update' post.pk %}">update</a> /
         <a href="{% url 'post_delete' post.pk %}">delete</a></small>
     </p>

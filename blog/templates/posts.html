@@ -2,32 +2,19 @@
 {% block content %}
 {% load static %}
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEDm26SfSzXWNO4H5F3hkpOlS302tVRTc&callback=initMap&libraries=&v=weekly">
-</script>
-<script src="{% static 'google-map.js' %}"></script>
-
     <div class="container">
         <div class="container-sm py-md-3">
-            <h1> Welcome to PyFleet! </h1>
+            <h1> Welcome to PyFleet news center! </h1>
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-5 ">
-                <h2> Company news feed: </h2>
-            </div>
-            <div class="col-sm">
-                <H2> Where are our trucks now: </H2>
-            </div>
-        </div>
+
 
         <div class="row">
-            <div class="col-5 py-md-3">
+            <div class="col-sm py-md-3">
 
                 {% for post in posts %}
-                    {% if forloop.counter < 5 %}
+
                         <article class="media content-section py-md-2 ">
                           <div class="media-body">
                             <div class="article-metadata">
@@ -35,28 +22,22 @@
                               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
                             </div>
                             <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-                            <p class="post-text">{{ post.content }}</p>
+                            <p class="article">{{ post.content }}</p>
                           </div>
                         </article>
-                    {% endif %}
+
                 {% endfor %}
                 <div class="row">
                     <div class="col-sm">
                         <a class="mr-2" href="{% url 'post_create' %}">Want to share news?</a>
                     </div>
                     <div class="col-sm">
-                        <a class="mr-2" href="{% url 'post_list' %}">Full list of articles</a>
+                        <a class="mr-2" href="{% url 'post_list' %}">Back to top</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-sm py-md-3">
-
-                <div id="map"></div>
-            </div>
         </div>
     </div>
 
 {% endblock content %}
-
-#eee
