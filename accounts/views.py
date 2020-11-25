@@ -7,12 +7,12 @@ from accounts.forms import SubmittableAuthenticationForm, SubmittablePasswordCha
 
 class SubmittableLoginView(LoginView):
     form_class = SubmittableAuthenticationForm
-    template_name = 'form.html'
+    template_name = 'forms.html'
 
 
 class SubmittablePasswordChangeView(PasswordChangeView):
     form_class = SubmittablePasswordChangeForm
-    template_name = 'form.html'
+    template_name = 'forms.html'
     success_url = reverse_lazy('index')
 
 

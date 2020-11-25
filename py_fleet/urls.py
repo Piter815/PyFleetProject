@@ -29,6 +29,7 @@ from py_fleet.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("accounts.urls")),
     path("core/", include('core.urls', namespace='core')),
     path("blog/", include('blog.urls', namespace='blog')),
     path("employee/list", EmployeeListView.as_view(), name='employee_list'),
