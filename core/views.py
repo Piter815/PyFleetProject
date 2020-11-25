@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
 from django.shortcuts import render
@@ -13,7 +15,7 @@ from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRo
 from core.tables import DailyRouteTable
 
 
-class EmployeeListView(ListView):
+class EmployeeListView(LoginRequiredMixin, ListView):
     template_name = 'employees.html'
     model = Employee
 
@@ -23,7 +25,7 @@ class EmployeeListView(ListView):
         return context
 
 
-class CustomerListView(ListView):
+class CustomerListView(LoginRequiredMixin, ListView):
     template_name = 'customers.html'
     model = Customer
 
@@ -33,7 +35,7 @@ class CustomerListView(ListView):
         return context
 
 
-class OrderListView(ListView):
+class OrderListView(LoginRequiredMixin, ListView):
     template_name = 'orders.html'
     model = Order
 
@@ -42,7 +44,8 @@ class OrderListView(ListView):
         context['order_list'] = Order.objects.all()
         return context
 
-class TruckListView(ListView):
+
+class TruckListView(LoginRequiredMixin, ListView):
     template_name = 'trucks.html'
     model = Truck
 
@@ -52,32 +55,32 @@ class TruckListView(ListView):
         return context
 
 
-class EmployeeDetailView(DetailView):
+class EmployeeDetailView(LoginRequiredMixin, DetailView):
     template_name = 'employee_detail.html'
     model = Employee
 
 
-class CustomerDetailView(DetailView):
+class CustomerDetailView(LoginRequiredMixin, DetailView):
     template_name = 'customer_detail.html'
     model = Customer
 
 
-class OrderDetailView(DetailView):
+class OrderDetailView(LoginRequiredMixin, DetailView):
     template_name = 'order_detail.html'
     model = Order
 
 
-class TruckDetailView(DetailView):
+class TruckDetailView(LoginRequiredMixin, DetailView):
     template_name = 'truck_detail.html'
     model = Truck
 
 
-class DailyRouteDetailView(DetailView):
+class DailyRouteDetailView(LoginRequiredMixin, DetailView):
     template_name = 'daily_route_detail.html'
     model = DailyRoute
 
 
-class EmployeeCreateView(CreateView):
+class EmployeeCreateView(LoginRequiredMixin, CreateView):
     title = 'Add Employee'
     template_name = 'forms.html'
     form_class = EmployeeForm
@@ -92,20 +95,21 @@ class EmployeeCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class CustomerCreateView(EmployeeCreateView):
+class CustomerCreateView(LoginRequiredMixin, CreateView):
     title = 'Add Customer'
     template_name = 'forms.html'
     form_class = CustomerForm
     success_url = reverse_lazy('customer_list')
 
 
-class OrderCreateView(EmployeeCreateView):
+class OrderCreateView(LoginRequiredMixin, CreateView):
     title = 'Add Order'
     template_name = 'forms.html'
     form_class = OrderForm
     success_url = reverse_lazy('order_list')
 
-class TruckCreateView(CreateView):
+
+class TruckCreateView(LoginRequiredMixin, CreateView):
     title = 'Add Truck'
     template_name = 'forms.html'
     form_class = TruckForm
@@ -120,7 +124,7 @@ class TruckCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class DailyRouteCreateView(CreateView):
+class DailyRouteCreateView(LoginRequiredMixin, CreateView):
     title = 'Add Daily Route'
     template_name = 'forms.html'
     form_class = DailyRouteForm
@@ -135,7 +139,7 @@ class DailyRouteCreateView(CreateView):
         return super().form_invalid(form)
 
 
-class EmployeeUpdateView(UpdateView):
+class EmployeeUpdateView(LoginRequiredMixin, UpdateView):
     title = 'Update Employee'
     model = Employee
     template_name = 'forms.html'
@@ -151,7 +155,7 @@ class EmployeeUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class CustomerUpdateView(UpdateView):
+class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     title = 'Update Customer'
     model = Customer
     template_name = 'forms.html'
@@ -163,7 +167,7 @@ class CustomerUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class OrderUpdateView(UpdateView):
+class OrderUpdateView(LoginRequiredMixin, UpdateView):
     title = 'Update Order'
     model = Order
     template_name = 'forms.html'
@@ -175,7 +179,7 @@ class OrderUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class TruckUpdateView(UpdateView):
+class TruckUpdateView(LoginRequiredMixin, UpdateView):
     title = 'Update Truck Details'
     model = Truck
     template_name = 'forms.html'
@@ -187,7 +191,7 @@ class TruckUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class DailyRouteUpdateView(UpdateView):
+class DailyRouteUpdateView(LoginRequiredMixin, UpdateView):
     title = 'Update Daily Route'
     model = DailyRoute
     template_name = 'forms.html'
@@ -199,48 +203,49 @@ class DailyRouteUpdateView(UpdateView):
         return super().form_invalid(form)
 
 
-class EmployeeDeleteView(DeleteView):
+class EmployeeDeleteView(LoginRequiredMixin, DeleteView):
     model = Employee
     template_name = 'employee_confirm_delete.html'
     # form_class = MovieForm
     success_url = reverse_lazy('employee_list')
 
 
-class CustomerDeleteView(DeleteView):
+class CustomerDeleteView(LoginRequiredMixin, DeleteView):
     model = Customer
     template_name = 'customer_confirm_delete.html'
     success_url = reverse_lazy('customer_list')
 
 
-class OrderDeleteView(DeleteView):
+class OrderDeleteView(LoginRequiredMixin, DeleteView):
     model = Order
     template_name = 'order_confirm_delete.html'
     success_url = reverse_lazy('order_list')
 
 
-class TruckDeleteView(DeleteView):
+class TruckDeleteView(LoginRequiredMixin, DeleteView):
     model = Truck
     template_name = 'truck_confirm_delete.html'
     success_url = reverse_lazy('truck_list')
 
 
-class DailyRouteDeleteView(DeleteView):
+class DailyRouteDeleteView(LoginRequiredMixin, DeleteView):
     model = DailyRoute
     template_name = 'daily_route_confirm_delete.html'
     success_url = reverse_lazy('daily_routes')
 
 
-class DailyRouteListView(ExportMixin, SingleTableView):
+class DailyRouteListView(LoginRequiredMixin, ExportMixin, SingleTableView):
     model = DailyRoute
     table_class = DailyRouteTable
     template_name = 'daily_routes.html'
+
 
 # class DailyRouteListView(ExportMixin, SingleTableView):
 #     model = DailyRoute
 #     table_class = DailyRouteTable
 #     template_name = 'daily_routes.html'
 
-class FilteredDailyRouteListView(SingleTableMixin,ExportMixin, FilterView):
+class FilteredDailyRouteListView(LoginRequiredMixin, SingleTableMixin, ExportMixin, FilterView):
     table_class = DailyRouteTable
     model = DailyRoute
     template_name = "daily_routes.html"

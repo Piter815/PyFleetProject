@@ -24,7 +24,7 @@ class EmployeeForm(forms.ModelForm):
             'availability',
             'address',
             'photo',
-            Submit('submit','Submit'),
+            Submit('submit', 'Submit'),
         )
 
 
@@ -40,7 +40,7 @@ class CustomerForm(forms.ModelForm):
             Row(Column('company_name'), Column('email'), Column('phone')),
             'NIP',
             'billing_address',
-            Submit('submit','Submit'),
+            Submit('submit', 'Submit'),
         )
 
 
@@ -58,7 +58,7 @@ class OrderForm(forms.ModelForm):
             'load_type',
             'truck',
             'status',
-            Submit('submit','Submit'),
+            Submit('submit', 'Submit'),
         )
 
 
@@ -81,7 +81,7 @@ class TruckForm(forms.ModelForm):
             'max_load',
             'description',
             'photo',
-            Submit('submit','Submit'),
+            Submit('submit', 'Submit'),
         )
 
 
@@ -100,5 +100,5 @@ class DailyRouteForm(forms.ModelForm):
             'driver',
             'truck',
             'order',
-            Submit('submit','Submit'),
+            Submit('submit', 'Submit'),
         )
