@@ -27,30 +27,30 @@ function initMap() {
   const iconBase = "/static/";
   const icons = {
     parking: {
-      name: "truck",
+      name: "Parking",
       icon: iconBase + "truck_ico.png",
     },
   };
   const features = [
     {
       position: new google.maps.LatLng(51.59147729330014, 18.86946112504381),
-      type: "truck",
+      type: "parking",
     },
     {
       position: new google.maps.LatLng(50.84061407973195, 17.48603277330002),
-      type: "truck",
+      type: "parking",
     },
     {
       position: new google.maps.LatLng(52.067228444873194, 18.14936855403365),
-      type: "truck",
+      type: "parking",
     },
     {
       position: new google.maps.LatLng(51.96209951349473, 19.836820887080826),
-      type: "truck",
+      type: "parking",
     },
     {
       position: new google.maps.LatLng(51.003466921328375, 17.201955016386837),
-      type: "truck",
+      type: "parking",
     },
 
   ];

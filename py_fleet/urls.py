@@ -22,7 +22,7 @@ from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView,
     CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView, OrderListView, \
     OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
     DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
-    TruckDetailView, TruckListView, FilteredDailyRouteListView
+    TruckDetailView, TruckListView, FilteredDailyRouteListView, MonthlyDistanceTraveled
 from blog.views import home, list, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
 from py_fleet.views import IndexView
 
@@ -62,6 +62,7 @@ urlpatterns = [
     path("post/update/<pk>", PostUpdateView.as_view(), name="post_update"),
     path("post/delete/<pk>", PostDeleteView.as_view(), name="post_delete"),
     path("post/list", list, name="post_list"),
+    path("dashboard/", MonthlyDistanceTraveled.as_view(), name="dashboard"),
 
 ]
 

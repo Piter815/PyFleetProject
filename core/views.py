@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from slick_reporting.fields import SlickReportField
+from slick_reporting.views import SlickReportView
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
 from django.shortcuts import render
@@ -13,7 +14,7 @@ from core.filters import DailyRouteFilter
 from core.models import Employee, Customer, Order, Truck, DailyRoute
 from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm
 from core.tables import DailyRouteTable
-
+from django.db.models import Sum
 
 class EmployeeListView(LoginRequiredMixin, ListView):
     template_name = 'employees.html'
@@ -250,3 +251,34 @@ class FilteredDailyRouteListView(LoginRequiredMixin, SingleTableMixin, ExportMix
     model = DailyRoute
     template_name = "daily_routes.html"
     filterset_class = DailyRouteFilter
+
+
+class MonthlyDistanceTraveled(SlickReportView):
+    # The model where you have the data
+    report_model = DailyRoute
+    # template_name = "dashboard.html"
+    # the main date field used for the model.
+    date_field = 'date'
+    # or 'order__date_placed'
+    # this support traversing, like so
+    # date_field = 'order__date_placed'
+
+    # A foreign key to group calculation on
+    # group_by = 'end'
+    # time_series_pattern = 'monthly'
+    # time_series_columns = ['__total_distance__']
+    # The columns you want to display
+    columns = ['distance',
+        SlickReportField.create(Sum, 'distance', name='sum__distance'),
+        SlickReportField.create(Sum, 'fuel_consumed')]
+
+    # Charts
+    chart_settings = [
+     {
+        'type': 'bar',
+        'data_source': 'distance',
+        'title_source': 'title',
+        'title': 'Total Distance per Route',
+        'plot_total': True,
+     },
+    ]
