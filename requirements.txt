@@ -5,6 +5,7 @@ django-bootstrap==0.2.4
 django-bootstrap4==2.3.1
 django-crispy-forms==1.10.0
 django-filter==2.4.0
+django-hashedfilenamestorage==2.4.1
 django-tables2==2.3.3
 Pillow==8.0.1
 pytz==2020.4
