@@ -6,7 +6,7 @@
     <h1>PyFleet Our Trucks</h1>
     <ul>
         {% for truck in truck_list %}
-
+            {% if truck.id != 1 %}
                 <li>
                      Model: <strong>{{ truck.model_name }} </strong> Production: {{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
                     <p><small>
@@ -15,7 +15,7 @@
                         <a href="{% url 'truck_delete' truck.pk %}">delete</a></small>
                     </p>
                 </li>
-
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}

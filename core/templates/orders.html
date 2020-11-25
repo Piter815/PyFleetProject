@@ -7,14 +7,16 @@
     <h4>List of our current orders, for details and edits please use links below</h4>
     <ul>
         {% for order in object_list %}
-          <li>
-            {% order_format order short=False %}
-              <p><small>
-                <a href="{% url 'order_detail' order.pk %}">detail</a> /
-                <a href="{% url 'order_update' order.pk %}">update</a> /
-                <a href="{% url 'order_delete' order.pk %}">delete</a></small>
-              </p>
-          </li>
+            {% if order.order_id != 1 %}
+              <li>
+                {% order_format order short=False %}
+                  <p><small>
+                    <a href="{% url 'order_detail' order.pk %}">detail</a> /
+                    <a href="{% url 'order_update' order.pk %}">update</a> /
+                    <a href="{% url 'order_delete' order.pk %}">delete</a></small>
+                  </p>
+              </li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}

@@ -7,14 +7,16 @@
     <h4>List of our current employees, for details and edits please use links below</h4>
     <ul>
         {% for employee in object_list %}
-          <li>
-            {% employee_format employee short=False %}
-              <p><small>
-                <a href="{% url 'employee_detail' employee.pk %}">detail</a> /
-                <a href="{% url 'employee_update' employee.pk %}">update</a> /
-                <a href="{% url 'employee_delete' employee.pk %}">delete</a></small>
-              </p>
-          </li>
+            {% if employee.id != 1 %}
+              <li>
+                {% employee_format employee short=False %}
+                  <p><small>
+                    <a href="{% url 'employee_detail' employee.pk %}">detail</a> /
+                    <a href="{% url 'employee_update' employee.pk %}">update</a> /
+                    <a href="{% url 'employee_delete' employee.pk %}">delete</a></small>
+                  </p>
+              </li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}

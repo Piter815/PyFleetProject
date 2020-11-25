@@ -7,14 +7,16 @@
     <h4>List of our current customers, for details and edits please use links below</h4>
     <ul>
         {% for customer in object_list %}
-          <li>
-            {% customer_format customer short=False %}
-              <p><small>
-                <a href="{% url 'customer_detail' customer.pk %}">detail</a> /
-                <a href="{% url 'customer_update' customer.pk %}">update</a> /
-                <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>
-              </p>
-          </li>
+            {% if customer.id != 1 %}
+              <li>
+                {% customer_format customer short=False %}
+                  <p><small>
+                    <a href="{% url 'customer_detail' customer.pk %}">detail</a> /
+                    <a href="{% url 'customer_update' customer.pk %}">update</a> /
+                    <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>
+                  </p>
+              </li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}

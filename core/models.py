@@ -47,6 +47,10 @@ class Truck(models.Model):
         return f'{self.model_name} Registered as: {self.reg_number}'
 
 
+EMPTY_CUSTOMER = 1
+EMPTY_TRUCK = 1
+
+
 class Order(models.Model):
     ROUTETYPE = (
         ('KM', 'Distance'),
@@ -66,7 +70,9 @@ class Order(models.Model):
     route_type = models.CharField(max_length=2, choices=ROUTETYPE)
     load_type = models.CharField(max_length=2, choices=LOADTYPE)
     status = models.CharField(max_length=2, choices=STATUS)
-    customer = models.ForeignKey(Customer, on_delete=CASCADE)
+    customer = models.ForeignKey(Customer,
+            default=EMPTY_CUSTOMER,
+            on_delete=models.SET_DEFAULT)
     truck = models.ManyToManyField(Truck)
 
     def __str__(self):
@@ -98,14 +104,22 @@ class Employee(models.Model):
         return f'{self.name} {self.surname} - {self.role}'
 
 
+EMPTY_EMPLOYEE = 1
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateField(default=timezone.now)
-    author = models.ForeignKey(Employee, on_delete=CASCADE)
+    author = models.ForeignKey(Employee,
+            default=EMPTY_EMPLOYEE,
+            on_delete=models.SET_DEFAULT)
 
     def __str__(self):
         return f'Post {self.title} by {self.author}'
+
+
+EMPTY_ORDER = 1
 
 
 class DailyRoute(models.Model):
@@ -114,9 +128,15 @@ class DailyRoute(models.Model):
     start = models.CharField(max_length=40, null=True, blank=True)
     end = models.CharField(max_length=40, null=True, blank=True)
     date = models.DateField(default=date.today)
-    driver = models.ForeignKey(Employee, on_delete=CASCADE)
-    truck = models.ForeignKey(Truck, on_delete=CASCADE)
-    order = models.ForeignKey(Order, on_delete=CASCADE)
+    driver = models.ForeignKey(Employee,
+            default=EMPTY_EMPLOYEE,
+            on_delete=models.SET_DEFAULT)
+    truck = models.ForeignKey(Truck,
+            default=EMPTY_TRUCK,
+            on_delete=models.SET_DEFAULT)
+    order = models.ForeignKey(Order,
+            default=EMPTY_ORDER,
+            on_delete=models.SET_DEFAULT)
 
     def __str__(self):
         return f'Post {self.start} to {self.end} on {self.date}'
