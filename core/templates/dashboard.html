@@ -106,7 +106,7 @@
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: [{% for item in qs3 %}'{{item.date_month}}',{% endfor %}],
+                        labels: [{% for item in qs3 %}'{{item.date_month|date:"F"}}',{% endfor %}],
                         datasets: [{
                             label: 'Fuel used per month (in liters monthly)',
                             data: [{% for item in qs3 %}{{item.fuel_consumed_sum}},{% endfor %}],
