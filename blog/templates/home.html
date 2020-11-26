@@ -9,8 +9,8 @@
 <script src="{% static 'google-map.js' %}"></script>
 
     <div class="container">
-        <div class="container-sm py-md-3">
-            <h1> Welcome to PyFleet! </h1>
+        <div id="title-1" class="container-sm">
+<!--            <h1> Welcome to PyFleet! </h1>-->
         </div>
     </div>
     <div class="container">
@@ -24,18 +24,19 @@
         </div>
 
         <div class="row">
-            <div class="col-5 py-md-3">
+            <div class="col-5 my-3">
 
                 {% for post in posts %}
                     {% if forloop.counter < 5 %}
-                        <article class="media content-section py-md-2 ">
+                        <article class="media content-section my-3 ">
                           <div class="media-body">
-                            <div class="article-metadata">
+                              <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                              <p class="post-text">{{ post.content }}</p>
+                              <div class="article-metadata">
                               <a class="mr-2" href="{% url 'employee_detail' post.author.pk %}">{{ post.author }}</a>
                               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                            </div>
-                            <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-                            <p class="post-text">{{ post.content }}</p>
+                              </div>
+
                           </div>
                         </article>
                     {% endif %}
@@ -50,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="col-sm py-md-3">
+            <div class="col-sm my-3">
 
                 <div id="map"></div>
             </div>

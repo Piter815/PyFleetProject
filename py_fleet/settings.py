@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_tables2',
     'django_filters',
-    'slick_reporting',
+    'chartjs',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

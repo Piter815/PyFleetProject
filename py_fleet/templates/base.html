@@ -10,16 +10,18 @@
       {% block styles %}{% bootstrap_css %}
       <link rel="stylesheet" href="{% static 'style.css'%}" type="text/css">
       {% endblock %}
-      {% block scripts %}{% bootstrap_javascript jquery='full' %}
-
+      {% block scripts %}
+      {% bootstrap_javascript jquery='full' %}
+          <!-- semantic UI -->
+      <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
 
       {% endblock %}
   </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <body id="body-1">
+    <nav id="navbar-1" class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container fixed">
-        <a class="navbar-brand" href="{% url 'index' %}">PyFleet</a>
+        <a id="logo-1" class="navbar-brand" href="{% url 'index' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -73,6 +75,12 @@
               <a class="dropdown-item" href="{% url 'daily_route_create' %}">Create</a>
             </div>
             </div>
+            <div class="nav-item">
+              <a class="nav-link active" href="{% url 'dashboard' %}" >
+                Dashboard
+              </a>
+            </div>
+
           </div>
           <div class="navbar-nav ml-auto">
             <div class="nav-item dropdown">
