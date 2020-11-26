@@ -1,8 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from slick_reporting.fields import SlickReportField
-from slick_reporting.views import SlickReportView
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
+from django.db.models.functions import Trunc
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
@@ -254,41 +253,13 @@ class FilteredDailyRouteListView(LoginRequiredMixin, SingleTableMixin, ExportMix
     filterset_class = DailyRouteFilter
 
 
-# class MonthlyDistanceTraveled(SlickReportView):
-#     # The model where you have the data
-#     report_model = DailyRoute
-#     # template_name = "dashboard.html"
-#     # the main date field used for the model.
-#     date_field = 'date'
-#     # or 'order__date_placed'
-#     # this support traversing, like so
-#     # date_field = 'order__date_placed'
-#
-#     # A foreign key to group calculation on
-#     # group_by = 'end'
-#     # time_series_pattern = 'monthly'
-#     # time_series_columns = ['__total_distance__']
-#     # The columns you want to display
-#     columns = ['distance',
-#         SlickReportField.create(Sum, 'distance', name='sum__distance'),
-#         SlickReportField.create(Sum, 'fuel_consumed')]
-#
-#     # Charts
-#     chart_settings = [
-#      {
-#         'type': 'bar',
-#         'data_source': 'distance',
-#         'title_source': 'title',
-#         'title': 'Total Distance per Route',
-#         'plot_total': True,
-#      },
-#     ]
-
-
 class MonthlyDistanceTraveled(TemplateView):
     template_name = 'dashboard.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['qs'] = DailyRoute.objects.all()
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['qs'] = DailyRoute.objects.values('driver__surname').annotate(distance_sum=Sum('distance')).order_by('-distance_sum')
+        context['qs2'] = DailyRoute.objects.values('driver__surname').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
+        context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
+
+        return context
