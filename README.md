@@ -15,8 +15,9 @@ Features:
 
 open new python project as pull from GitHub : https://github.com/Piter815/PyFleetNew.git
 
-Django commands to run before starting server:
+Activate virtual enviroment
 
+Django commands to run before starting server:
 $ pip install -r requirements.txt
 $ python manage.py makemigrations
 $ python manage.py migrate
