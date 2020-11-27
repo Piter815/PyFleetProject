@@ -4,12 +4,13 @@
 
 {% block content %}
     <h1>PyFleet Our Trucks</h1>
+    <h2 class="text-muted mb-4"><small>List of our company registered trucks, please use links below for details and edits </small></h2>
     <ul>
         {% for truck in truck_list %}
             {% if truck.id != 1 %}
                 <li>
-                     Model: <strong>{{ truck.model_name }} </strong> Production: {{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
-                    <p><small>
+                    Model: <strong>{{ truck.model_name }} </strong> Production: {{ truck.production_date }}, Type: {{ truck.type }}, Reg. number: {{ truck.reg_number }}
+                    <p class="mb-3"><small>
                         <a href="{% url 'truck_detail' truck.pk %}">detail</a> /
                         <a href="{% url 'truck_update' truck.pk %}">update</a> /
                         <a href="{% url 'truck_delete' truck.pk %}">delete</a></small>

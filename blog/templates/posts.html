@@ -3,8 +3,7 @@
 {% load static %}
 
     <div class="container">
-        <div id="title-1" class="container-sm py-md-3">
-            <h1> Welcome to PyFleet news center! </h1>
+        <div id="title-1" class="container-sm">
         </div>
     </div>
     <div class="container">
@@ -17,12 +16,12 @@
 
                         <article class="media content-section py-md-2 ">
                           <div class="media-body">
-                            <div class="article-metadata">
-                              <a class="mr-2" href="{% url 'employee_detail' post.author.pk %}">{{ post.author }}</a>
-                              <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-                            </div>
-                            <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-                            <p class="article">{{ post.content }}</p>
+                              <h2><a class="article-title" href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+                              <div class="article-metadata">
+                                <a class="mr-2" href="{% url 'employee_detail' post.author.pk %}">{{ post.author }}</a>
+                                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                              </div>
+                              <p class="article mb-4">{{ post.content }}</p>
                           </div>
                         </article>
 

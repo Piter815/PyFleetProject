@@ -4,13 +4,13 @@
 
 {% block content %}
     <h1>PyFleet Our Customers</h1>
-    <h4>List of our current customers, for details and edits please use links below</h4>
+    <h2 class="text-muted mb-4"><small>List of our current customers, for details and edits please use links below</small></h2>
     <ul>
         {% for customer in object_list %}
             {% if customer.id != 1 %}
               <li>
                 {% customer_format customer short=False %}
-                  <p><small>
+                  <p class="mb-3"><small>
                     <a href="{% url 'customer_detail' customer.pk %}">detail</a> /
                     <a href="{% url 'customer_update' customer.pk %}">update</a> /
                     <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>

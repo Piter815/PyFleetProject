@@ -10,13 +10,16 @@
 <div class="container">
     <div class="row">
         <div class="col-sm mb-4 ml-5  ">
-            <h1> Live data view </h1>
+            <h1> Live data view
+                <small class="text-muted">Charts linked directly with database</small>
+            </h1>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-5 m-2">
+            <H3>How many kilometers have our drivers traveled?</H3>
             <canvas id="myChart" width="400" height="400"></canvas>
             <script> var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -58,6 +61,7 @@
             </script>
         </div>
         <div class="col-5 m-2">
+            <H3>How much fuel have we used per driver?</H3>
             <canvas id="myChart2" width="400" height="400"></canvas>
             <script> var ctx = document.getElementById('myChart2').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -101,6 +105,7 @@
     </div>
     <div class="row justify-content-md-center">
         <div class="col-5 m-2">
+            <H3>Our trucks total fuel consumption monthly</H3>
             <canvas id="myChart3" width="400" height="400"></canvas>
             <script> var ctx = document.getElementById('myChart3').getContext('2d');
                 var myChart = new Chart(ctx, {
