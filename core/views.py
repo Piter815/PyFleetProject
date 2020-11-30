@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
 from django.db.models.functions import Trunc
@@ -16,9 +16,16 @@ from core.tables import DailyRouteTable
 from django.db.models import Sum
 
 
-class EmployeeListView(LoginRequiredMixin, ListView):
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class EmployeeListView(PermissionRequiredMixin, ListView):
     template_name = 'employees.html'
     model = Employee
+    permission_required = 'core.view_employee'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,6 +36,7 @@ class EmployeeListView(LoginRequiredMixin, ListView):
 class CustomerListView(LoginRequiredMixin, ListView):
     template_name = 'customers.html'
     model = Customer
+    permission_required = 'core.view_customer'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,7 +64,7 @@ class TruckListView(LoginRequiredMixin, ListView):
         return context
 
 
-class EmployeeDetailView(LoginRequiredMixin, DetailView):
+class EmployeeDetailView(StaffRequiredMixin, DetailView):
     template_name = 'employee_detail.html'
     model = Employee
 
@@ -81,7 +89,7 @@ class DailyRouteDetailView(LoginRequiredMixin, DetailView):
     model = DailyRoute
 
 
-class EmployeeCreateView(LoginRequiredMixin, CreateView):
+class EmployeeCreateView(StaffRequiredMixin, CreateView):
     title = 'Add Employee'
     template_name = 'forms.html'
     form_class = EmployeeForm
@@ -96,21 +104,21 @@ class EmployeeCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
-class CustomerCreateView(LoginRequiredMixin, CreateView):
+class CustomerCreateView(StaffRequiredMixin, CreateView):
     title = 'Add Customer'
     template_name = 'forms.html'
     form_class = CustomerForm
     success_url = reverse_lazy('customer_list')
 
 
-class OrderCreateView(LoginRequiredMixin, CreateView):
+class OrderCreateView(StaffRequiredMixin, CreateView):
     title = 'Add Order'
     template_name = 'forms.html'
     form_class = OrderForm
     success_url = reverse_lazy('order_list')
 
 
-class TruckCreateView(LoginRequiredMixin, CreateView):
+class TruckCreateView(StaffRequiredMixin, CreateView):
     title = 'Add Truck'
     template_name = 'forms.html'
     form_class = TruckForm
@@ -140,7 +148,7 @@ class DailyRouteCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
-class EmployeeUpdateView(LoginRequiredMixin, UpdateView):
+class EmployeeUpdateView(StaffRequiredMixin, UpdateView):
     title = 'Update Employee'
     model = Employee
     template_name = 'forms.html'
@@ -156,7 +164,7 @@ class EmployeeUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_invalid(form)
 
 
-class CustomerUpdateView(LoginRequiredMixin, UpdateView):
+class CustomerUpdateView(StaffRequiredMixin, UpdateView):
     title = 'Update Customer'
     model = Customer
     template_name = 'forms.html'
@@ -168,7 +176,7 @@ class CustomerUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_invalid(form)
 
 
-class OrderUpdateView(LoginRequiredMixin, UpdateView):
+class OrderUpdateView(StaffRequiredMixin, UpdateView):
     title = 'Update Order'
     model = Order
     template_name = 'forms.html'
@@ -204,26 +212,26 @@ class DailyRouteUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_invalid(form)
 
 
-class EmployeeDeleteView(LoginRequiredMixin, DeleteView):
+class EmployeeDeleteView(StaffRequiredMixin, DeleteView):
     model = Employee
     template_name = 'employee_confirm_delete.html'
     # form_class = MovieForm
     success_url = reverse_lazy('employee_list')
 
 
-class CustomerDeleteView(LoginRequiredMixin, DeleteView):
+class CustomerDeleteView(StaffRequiredMixin, DeleteView):
     model = Customer
     template_name = 'customer_confirm_delete.html'
     success_url = reverse_lazy('customer_list')
 
 
-class OrderDeleteView(LoginRequiredMixin, DeleteView):
+class OrderDeleteView(StaffRequiredMixin, DeleteView):
     model = Order
     template_name = 'order_confirm_delete.html'
     success_url = reverse_lazy('order_list')
 
 
-class TruckDeleteView(LoginRequiredMixin, DeleteView):
+class TruckDeleteView(StaffRequiredMixin, DeleteView):
     model = Truck
     template_name = 'truck_confirm_delete.html'
     success_url = reverse_lazy('truck_list')
@@ -253,7 +261,7 @@ class FilteredDailyRouteListView(LoginRequiredMixin, SingleTableMixin, ExportMix
     filterset_class = DailyRouteFilter
 
 
-class MonthlyDistanceTraveled(TemplateView):
+class MonthlyDistanceTraveled(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard.html'
 
     def get_context_data(self, **kwargs):

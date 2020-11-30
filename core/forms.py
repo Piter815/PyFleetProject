@@ -1,7 +1,10 @@
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Row, Submit
 from django import forms
 from datetime import date
+
+from accounts.forms import SignUpForm
 from core.models import Employee, Customer, Order, Truck, DailyRoute
 from django.core.exceptions import ValidationError
 
@@ -24,6 +27,7 @@ class EmployeeForm(forms.ModelForm):
             'availability',
             'address',
             'photo',
+            'user',
             Submit('submit', 'Submit'),
         )
 

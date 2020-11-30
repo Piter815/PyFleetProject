@@ -10,6 +10,7 @@
   {{ customer|attr_as_p:'NIP' }}
   {{ customer|attr_as_p:'billing_address' }}
 
+{% if user.is_staff %}
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>
     <p><small>
@@ -17,5 +18,5 @@
         <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>
     </p>
 </div>
-
+{% endif %}
 {% endblock %}

@@ -30,22 +30,29 @@
             <a class="nav-item nav-link active" href="/">
               Home
             </a>
+            {% if user.is_authenticated %}
+              {% if user.is_staff %}
             <div class="nav-item dropdown">
               <a class="nav-link active dropdown-toggle" href="{% url 'employee_list' %}" data-toggle="dropdown">
                 Employees
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'employee_list' %}">List</a>
+
                 <a class="dropdown-item" href="{% url 'employee_create' %}">Create</a>
+
               </div>
             </div>
+               {% endif %}
             <div class="nav-item dropdown">
               <a class="nav-link active dropdown-toggle" href="{% url 'customer_list' %}" data-toggle="dropdown">
                 Customers
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'customer_list' %}">List</a>
+                {% if user.is_staff %}
                 <a class="dropdown-item" href="{% url 'customer_create' %}">Create</a>
+                {% endif %}
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -54,7 +61,9 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'order_list' %}">List</a>
+                {% if user.is_staff %}
                 <a class="dropdown-item" href="{% url 'order_create' %}">Create</a>
+                {% endif %}
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -63,7 +72,9 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'truck_list' %}">List</a>
+                {% if user.is_staff %}
                 <a class="dropdown-item" href="{% url 'truck_create' %}">Create</a>
+                {% endif %}
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -80,7 +91,7 @@
                 Dashboard
               </a>
             </div>
-
+            {% endif %}
           </div>
           <div class="navbar-nav ml-auto">
             <div class="nav-item dropdown">
@@ -90,6 +101,7 @@
                   {% else %}Hello, {{ user.username }}!{% endif %}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item text-right" href="{% url 'accounts:profile' %}">Your Profile</a>
                   <a class="dropdown-item text-right" href="{% url 'accounts:logout' %}">Logout</a>
                   <a class="dropdown-item text-right" href="{% url 'accounts:password_change' %}">Change Password</a>
                 </div>

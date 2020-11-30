@@ -23,7 +23,9 @@
     <p><small>
         <a href="{% url 'post_create' %}">create new</a> /
         <a href="{% url 'post_update' post.pk %}">update</a> /
+        {% if user.is_staff %}
         <a href="{% url 'post_delete' post.pk %}">delete</a></small>
+        {% endif %}
     </p>
 </div>
 

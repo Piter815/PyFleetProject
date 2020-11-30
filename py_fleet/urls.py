@@ -14,6 +14,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+
+
 from . import views, settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -22,7 +25,7 @@ from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView,
     OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
     DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
     TruckDetailView, TruckListView, FilteredDailyRouteListView, MonthlyDistanceTraveled
-from blog.views import home, list, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+from blog.views import PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, HomeListView, PostListView
 from py_fleet.views import IndexView
 
 
@@ -32,7 +35,7 @@ urlpatterns = [
     path("core/", include('core.urls', namespace='core')),
     path("blog/", include('blog.urls', namespace='blog')),
     path("employee/list", EmployeeListView.as_view(), name='employee_list'),
-    path("", home, name='index'),
+    path("", HomeListView.as_view(), name='index'),
     path("employee/detail/<pk>", EmployeeDetailView.as_view(), name="employee_detail"),
     path("employee/create", EmployeeCreateView.as_view(), name="employee_create"),
     path("employee/update/<pk>", EmployeeUpdateView.as_view(), name="employee_update"),
@@ -61,7 +64,7 @@ urlpatterns = [
     path("post/create", PostCreateView.as_view(), name="post_create"),
     path("post/update/<pk>", PostUpdateView.as_view(), name="post_update"),
     path("post/delete/<pk>", PostDeleteView.as_view(), name="post_delete"),
-    path("post/list", list, name="post_list"),
+    path("post/list", PostListView.as_view(), name="post_list"),
     path("dashboard/", MonthlyDistanceTraveled.as_view(), name="dashboard"),
 
 ]

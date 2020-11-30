@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+{% load employee_extras %}
+
+{% block content %}
+
+<h1> Hello {{ user.username }} !</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        {% if user.employee.photo %}
+            <img src="{{ user.employee.photo.url }}" class="img-fluid rounded" alt="photo">
+        {% endif %}
+    </div>
+
+    <div class="col-sm">
+        <h2>Your user profile: </h2>
+        <p><strong>Account name:</strong> {{ user.username }} </p>
+        <p><strong>email address:</strong> {{ user.employee.email }} </p>
+      {{ user.employee|attr_as_p:'name' }}
+      {{ user.employee|attr_as_p:'surname' }}
+      {{ user.employee|attr_as_p:'role' }}
+      {{ user.employee|attr_as_p:'birth_date' }}
+      {{ user.employee|attr_as_p:'address' }}
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

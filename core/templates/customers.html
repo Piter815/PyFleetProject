@@ -11,9 +11,12 @@
               <li>
                 {% customer_format customer short=False %}
                   <p class="mb-3"><small>
-                    <a href="{% url 'customer_detail' customer.pk %}">detail</a> /
+                    <a href="{% url 'customer_detail' customer.pk %}">detail</a>
+                      {% if user.is_staff %} /
                     <a href="{% url 'customer_update' customer.pk %}">update</a> /
-                    <a href="{% url 'customer_delete' customer.pk %}">delete</a></small>
+                    <a href="{% url 'customer_delete' customer.pk %}">delete</a>
+                      {% endif %}
+                      </small>
                   </p>
               </li>
             {% endif %}

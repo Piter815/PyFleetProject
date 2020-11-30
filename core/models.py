@@ -1,5 +1,6 @@
 import hashlib
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CASCADE
 from django.utils import timezone
@@ -88,6 +89,7 @@ class Employee(models.Model):
         ('Y', 'Yes'),
         ('N', 'No'),
     )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=2)
     name = models.CharField(max_length=40)
     surname = models.CharField(max_length=40)
     phone = models.CharField(max_length=20, unique=True, null=True, blank=True)

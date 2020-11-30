@@ -10,11 +10,13 @@
             {% if employee.id != 1 %}
               <li>
                 {% employee_format employee short=False %}
+                  {% if user.is_staff %}
                   <p class="mb-3"><small>
                     <a href="{% url 'employee_detail' employee.pk %}">detail</a> /
                     <a href="{% url 'employee_update' employee.pk %}">update</a> /
                     <a href="{% url 'employee_delete' employee.pk %}">delete</a></small>
                   </p>
+                  {% endif %}
               </li>
             {% endif %}
         {% endfor %}

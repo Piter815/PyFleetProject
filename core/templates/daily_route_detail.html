@@ -16,8 +16,9 @@
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>
     <p><small>
-        <a href="{% url 'daily_route_update' dailyroute.pk %}">update</a> /
+        <a href="{% url 'daily_route_update' dailyroute.pk %}">update</a> {% if user.is_staff %}/
         <a href="{% url 'daily_route_delete' dailyroute.pk %}">delete</a></small>
+        {% endif %}
     </p>
 </div>
 

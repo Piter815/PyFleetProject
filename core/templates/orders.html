@@ -11,9 +11,12 @@
               <li>
                 {% order_format order short=False %}
                   <p class="mb-4"><small>
-                    <a href="{% url 'order_detail' order.pk %}">detail</a> /
+                    <a href="{% url 'order_detail' order.pk %}">detail</a>
+                      {% if user.is_staff %} /
                     <a href="{% url 'order_update' order.pk %}">update</a> /
-                    <a href="{% url 'order_delete' order.pk %}">delete</a></small>
+                    <a href="{% url 'order_delete' order.pk %}">delete</a>
+                      {% endif %}
+                        </small>
                   </p>
               </li>
             {% endif %}

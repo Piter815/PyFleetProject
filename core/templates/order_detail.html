@@ -14,6 +14,7 @@
           {% for truck in order.truck.all %}
             <li>{{ truck }}</li>
           {% endfor %}
+{% if user.is_staff %}
 <div class="container-sm py-md-5">
     <h5>Need to edit?</h5>
     <p><small>
@@ -21,7 +22,7 @@
         <a href="{% url 'order_delete' order.pk %}">delete</a></small>
     </p>
 </div>
-
+{% endif %}
 
 
 {% endblock %}
