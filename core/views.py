@@ -272,7 +272,7 @@ class MonthlyDistanceTraveled(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['qs'] = DailyRoute.objects.values('driver__surname').annotate(distance_sum=Sum('distance')).order_by('-distance_sum')
         context['qs2'] = DailyRoute.objects.values('driver__surname').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
-        context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
+        context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('date_month')
 
         return context
 
