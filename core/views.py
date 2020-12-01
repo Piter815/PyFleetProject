@@ -1,17 +1,20 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
 from django.db.models.functions import Trunc
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableView, SingleTableMixin
 from django_tables2.export import ExportMixin
 
+from accounts.forms import SignUpForm
 from core.filters import DailyRouteFilter
 from core.models import Employee, Customer, Order, Truck, DailyRoute
-from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm
+from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm, UserForm
 from core.tables import DailyRouteTable
 from django.db.models import Sum
 
@@ -271,3 +274,40 @@ class MonthlyDistanceTraveled(LoginRequiredMixin, TemplateView):
         context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
 
         return context
+
+
+@login_required
+def employee_create(request):
+    u_form = SignUpForm
+    e_form = EmployeeForm
+
+    context = {
+        'u_form': u_form,
+        'e_form': e_form,
+    }
+
+    return render(request, 'forms-e.html', context)
+
+
+@login_required
+def employee_update(request):
+    if request.method == 'POST':
+        uform = UserForm(request.POST, instance=request.user)
+        eform = EmployeeForm(request.POST, request.FILES, instance=request.user.employee)
+        if uform.is_valid() and eform.is_valid():
+            uform.save()
+            eform.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('profile')
+
+    else:
+        uform = UserForm(instance=request.user)
+        eform = EmployeeForm(instance=request.user.employee)
+
+    context = {
+        "uform": uform,
+        "eform": eform
+    }
+
+    return render(request, 'forms-e.html', context)
+

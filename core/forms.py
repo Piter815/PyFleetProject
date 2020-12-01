@@ -2,9 +2,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Row, Submit
 from django import forms
-from datetime import date
-
-from accounts.forms import SignUpForm
+from django.contrib.auth.models import User
 from core.models import Employee, Customer, Order, Truck, DailyRoute
 from django.core.exceptions import ValidationError
 
@@ -28,6 +26,20 @@ class EmployeeForm(forms.ModelForm):
             'address',
             'photo',
             'user',
+            Submit('submit', 'Submit'),
+        )
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(Column('username'), Column('email')),
             Submit('submit', 'Submit'),
         )
 
