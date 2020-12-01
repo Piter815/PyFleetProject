@@ -15,8 +15,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-
 from . import views, settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -24,9 +22,10 @@ from core.views import EmployeeListView, EmployeeDetailView, EmployeeCreateView,
     CustomerListView, CustomerDetailView, CustomerCreateView, CustomerUpdateView, CustomerDeleteView, OrderListView, \
     OrderDetailView, OrderCreateView, OrderUpdateView, OrderDeleteView, DailyRouteListView, DailyRouteDetailView, \
     DailyRouteCreateView, DailyRouteUpdateView, DailyRouteDeleteView, TruckDeleteView, TruckUpdateView, TruckCreateView, \
-    TruckDetailView, TruckListView, FilteredDailyRouteListView, MonthlyDistanceTraveled
+    TruckDetailView, TruckListView, FilteredDailyRouteListView, MonthlyDistanceTraveled, employee_update, \
+    employee_create
 from blog.views import PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, HomeListView, PostListView
-from py_fleet.views import IndexView
+
 
 
 urlpatterns = [
@@ -37,7 +36,7 @@ urlpatterns = [
     path("employee/list", EmployeeListView.as_view(), name='employee_list'),
     path("", HomeListView.as_view(), name='index'),
     path("employee/detail/<pk>", EmployeeDetailView.as_view(), name="employee_detail"),
-    path("employee/create", EmployeeCreateView.as_view(), name="employee_create"),
+    path("employee/create", employee_create, name="employee_create"),
     path("employee/update/<pk>", EmployeeUpdateView.as_view(), name="employee_update"),
     path("employee/delete/<pk>", EmployeeDeleteView.as_view(), name="employee_delete"),
     path("customer/list", CustomerListView.as_view(), name='customer_list'),
@@ -66,6 +65,7 @@ urlpatterns = [
     path("post/delete/<pk>", PostDeleteView.as_view(), name="post_delete"),
     path("post/list", PostListView.as_view(), name="post_list"),
     path("dashboard/", MonthlyDistanceTraveled.as_view(), name="dashboard"),
+    path("update/", employee_update, name="update"),
 
 ]
 

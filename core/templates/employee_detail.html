@@ -13,12 +13,15 @@
         {% endif %}
     </div>
     <div class="col-sm">
+        <h2>Employee data: </h2>
       {{ employee|attr_as_p:'name' }}
       {{ employee|attr_as_p:'surname' }}
       {{ employee|attr_as_p:'role' }}
       {{ employee|attr_as_p:'birth_date' }}
       {{ employee|attr_as_p:'salary' }}
       {{ employee|attr_as_p:'address' }}
+      <h2>User profile: </h2>
+        <p><strong>Account name:</strong> {{ employee.user.username }} </p>
     </div>
   </div>
 </div>

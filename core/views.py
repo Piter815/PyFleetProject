@@ -1,17 +1,21 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from concurrent.futures._base import LOGGER
 import django_tables2 as tables
 from django.db.models.functions import Trunc
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django_filters.views import FilterView
 from django_tables2 import SingleTableView, SingleTableMixin
 from django_tables2.export import ExportMixin
 
+from accounts.forms import SignUpForm
 from core.filters import DailyRouteFilter
 from core.models import Employee, Customer, Order, Truck, DailyRoute
-from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm
+from core.forms import EmployeeForm, CustomerForm, OrderForm, TruckForm, DailyRouteForm, UserForm, EmployeeProfileForm, \
+    UserRegistrationForm
 from core.tables import DailyRouteTable
 from django.db.models import Sum
 
@@ -268,6 +272,57 @@ class MonthlyDistanceTraveled(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['qs'] = DailyRoute.objects.values('driver__surname').annotate(distance_sum=Sum('distance')).order_by('-distance_sum')
         context['qs2'] = DailyRoute.objects.values('driver__surname').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
-        context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('fuel_consumed_sum')
+        context['qs3'] = DailyRoute.objects.annotate(date_month=Trunc('date', 'month')).values('date_month').annotate(fuel_consumed_sum=Sum('fuel_consumed')).order_by('date_month')
 
         return context
+
+
+@login_required
+def employee_create(request):
+    if request.method == 'POST':
+        uform = SignUpForm(request.POST)
+        eform = EmployeeForm(request.POST)
+        if uform.is_valid():
+            new_user = uform.save(commit=True)
+            if eform.is_valid():
+                new_employee = eform.save(commit=False)
+                new_employee.user = new_user
+                new_employee.save()
+
+            messages.success(request, f'New account has been created!')
+            return redirect('employee_list')
+
+    else:
+        uform = SignUpForm()
+        eform = EmployeeForm()
+
+    context = {
+        'uform': uform,
+        'eform': eform,
+    }
+
+    return render(request, 'forms-e.html', context)
+
+
+@login_required
+def employee_update(request):
+    if request.method == 'POST':
+        uform = UserForm(request.POST, instance=request.user)
+        eform = EmployeeProfileForm(request.POST, request.FILES, instance=request.user.employee)
+        if uform.is_valid() and eform.is_valid():
+            uform.save()
+            eform.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('update')
+
+    else:
+        uform = UserForm(instance=request.user)
+        eform = EmployeeProfileForm(instance=request.user.employee)
+
+    context = {
+        "uform": uform,
+        "eform": eform
+    }
+
+    return render(request, 'forms-e.html', context)
+

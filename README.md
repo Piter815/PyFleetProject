@@ -1,4 +1,4 @@
-# PyFleetNew
+# PyFleet Project 
 
 Python/Django based app for transportation company management. 
 
@@ -13,7 +13,7 @@ Features:
 
 ## Installation
 
-open new python project as pull from GitHub : https://github.com/Piter815/PyFleetNew.git
+open new python project as pull from GitHub : https://github.com/Piter815/PyFleetProject.git
 
 Activate virtual enviroment
 
