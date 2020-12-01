@@ -24,8 +24,17 @@
       {{ user.employee|attr_as_p:'role' }}
       {{ user.employee|attr_as_p:'birth_date' }}
       {{ user.employee|attr_as_p:'address' }}
+
+        <div class="container-sm py-md-5">
+            <h5>Need to edit?</h5>
+            <p><small>
+                <a href="{% url 'update' %}">Update your profile</a></small></p>
+        </div>
     </div>
   </div>
+
+
+
 </div>
 
 

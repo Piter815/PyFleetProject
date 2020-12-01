@@ -13,7 +13,7 @@ class SubmittableForm(Form):
         self.helper.layout = Layout(*self.fields, Submit('submit', 'Submit'))
 
 
-class SignUpForm(SubmittableForm, UserCreationForm):
+class SignUpForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:

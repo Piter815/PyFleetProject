@@ -2,6 +2,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Row, Submit
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from core.models import Employee, Customer, Order, Truck, DailyRoute
 from django.core.exceptions import ValidationError
@@ -10,7 +11,7 @@ from django.core.exceptions import ValidationError
 class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
-        fields = '__all__'
+        exclude = ['user']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,6 +30,26 @@ class EmployeeForm(forms.ModelForm):
             Submit('submit', 'Submit'),
         )
 
+class EmployeeProfileForm(forms.ModelForm):
+    class Meta:
+        model = Employee
+        exclude = ['salary', 'role', 'user']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(Column('name'), Column('surname')),
+            'birth_date',
+            'qualifications',
+            'phone',
+            'email',
+            'availability',
+            'address',
+            'photo',
+            Submit('submit', 'Submit'),
+        )
+
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -43,6 +64,21 @@ class UserForm(forms.ModelForm):
             Submit('submit', 'Submit'),
         )
 
+
+class UserRegistrationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(Column('username'), Column('email')),
+            'password1',
+            'password2',
+            Submit('submit', 'Submit'),
+        )
 
 class CustomerForm(forms.ModelForm):
     class Meta:
