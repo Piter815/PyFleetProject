@@ -19,11 +19,11 @@
         <h2>Your user profile: </h2>
         <p><strong>Account name:</strong> {{ user.username }} </p>
         <p><strong>email address:</strong> {{ user.employee.email }} </p>
-      {{ user.employee|attr_as_p:'name' }}
-      {{ user.employee|attr_as_p:'surname' }}
-      {{ user.employee|attr_as_p:'role' }}
-      {{ user.employee|attr_as_p:'birth_date' }}
-      {{ user.employee|attr_as_p:'address' }}
+      {% if user.employee.name %} {{ user.employee|attr_as_p:'name' }} {% endif %}
+      {% if user.employee.surname %} {{ user.employee|attr_as_p:'surname' }} {% endif %}
+      {% if user.employee.role %} {{ user.employee|attr_as_p:'role' }} {% endif %}
+      {% if user.employee.birth_date %} {{ user.employee|attr_as_p:'birth_date' }} {% endif %}
+      {% if user.employee.address %} {{ user.employee|attr_as_p:'address' }} {% endif %}
 
         <div class="container-sm py-md-5">
             <h5>Need to edit?</h5>
